@@ -1,5 +1,5 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+const express = require('express')
+const bodyParser = require('body-parser')
 
 
 const app = express()
@@ -13,5 +13,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`Api está rodado na porta: http://localhost:${port}`)
+    console.log(`⚡️ Api está rodado na porta: http://localhost:${port}`)
   })
