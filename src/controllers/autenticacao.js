@@ -8,7 +8,7 @@ router.post('/registro', async(req,res) =>{
 
     try {
         if(await User.findOne({ email }))
-            return res.status(400).send({ erro: "Email ja cadastrado !" })
+            return res.status(400).send({ erro: "Email contém cadastrado !" })
 
         const user = await User.create(req.body)  //User objeto do mongoose -- pegando todos os paramentros que usuario esta enviando pelo req.body
     
