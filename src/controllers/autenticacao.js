@@ -1,9 +1,17 @@
 const express = require('express')
 const bcrypt = require('bcryptjs')
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 const User = require('../Models/user')
 
+const authConfig = require('../config/auth.json')
+
 const router = express.Router()
+
+function gerandoToken(params = {}){
+    return jwt.sign(params, authConfig.secret, {
+        expiresIn: 86400 
+    } )
+}
 
 router.post('/registro', async(req,res) =>{
     const { email } = req.body
@@ -16,7 +24,10 @@ router.post('/registro', async(req,res) =>{
     
         user.password = undefined       //quando retonar json, não mostra a senha
 
-        return res.send({ user })
+        return res.send({ 
+            user,
+            token: gerandoToken({ id: user.id }) 
+        })
     }catch (err) {
         return res.status(400).send({ error: "Falha no Registro !" })
     }
@@ -35,9 +46,13 @@ router.post('/autenticacao', async (req, res) => {
     
     user.password = undefined
 
-    const token = jwt.sign({ id: user.id }, )
+    const token = jwt.sign({ id: user.id }, authConfig.secret, {
+        expiresIn: 86400 // Por padrão expiração em 1 dia
+    } )
 
-    res.send({ user })
+    res.send({ 
+        user, 
+        token: gerandoToken({ id: user.id }) })
 })
 
 module.exports = app => app.use('/auten', router)
