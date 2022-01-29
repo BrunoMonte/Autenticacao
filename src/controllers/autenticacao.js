@@ -41,7 +41,7 @@ router.post('/autenticacao', async (req, res) => {
     if(!user)
         return res.status(400).send({ error: "Usuario não encontrado" })
     
-    if(!await bcrypt.compare(password, user.password))
+    if(!await bcrypt.compare(password, user.password))          //Onde faz checagem de senha do usuario cadastrado
     return res.status(400).send({ error: 'Senha inválida' })
     
     user.password = undefined
