@@ -18,7 +18,7 @@ router.post('/registro', async(req,res) =>{
 
     try {
         if(await User.findOne({ email }))
-            return res.status(400).send({ erro: "Email contém cadastrado !" })
+            return res.status(401).send({ erro: "Email contém cadastrado !" })
 
         const user = await User.create(req.body)  //User objeto do mongoose -- pegando todos os paramentros que usuario esta enviando pelo req.body
     
@@ -42,7 +42,7 @@ router.post('/autenticacao', async (req, res) => {
         return res.status(400).send({ error: "Usuario não encontrado" })
     
     if(!await bcrypt.compare(password, user.password))          //Onde faz checagem de senha do usuario cadastrado
-    return res.status(400).send({ error: 'Senha inválida' })
+    return res.status(406).send({ error: 'Senha inválida' })        // Error 406, para Não aceitável !
     
     user.password = undefined
 
