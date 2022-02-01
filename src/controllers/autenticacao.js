@@ -44,7 +44,7 @@ router.post('/autenticacao', async (req, res) => {
     if(!await bcrypt.compare(password, user.password))          //Onde faz checagem de senha do usuario cadastrado
     return res.status(406).send({ error: 'Senha inválida' })        // Error 406, para Não aceitável !
     
-    user.password = undefined
+    user.password = undefined       //Onde não Retorna a senha
 
     const token = jwt.sign({ id: user.id }, authConfig.secret, {
         expiresIn: 86400 // Por padrão expiração em 1 dia
