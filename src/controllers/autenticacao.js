@@ -2,9 +2,7 @@ const express = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../Models/user')
-
 const authConfig = require('../config/auth.json')
-
 const router = express.Router()
 
 function gerandoToken(params = {}){
@@ -14,7 +12,7 @@ function gerandoToken(params = {}){
 }
 
 router.post('/registro', async(req,res) =>{
-    const { email } = req.body
+    const { email } = req.body      //identificador único do cadastro
 
     try {
         if(await User.findOne({ email }))
@@ -55,4 +53,4 @@ router.post('/autenticacao', async (req, res) => {
         token: gerandoToken({ id: user.id }) })
 })
 
-module.exports = app => app.use('/auten', router)
+module.exports = app => app.use('/login', router)
