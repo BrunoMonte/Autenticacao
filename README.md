@@ -1,7 +1,5 @@
 # NodeJS | Express | Body-parser | Nodemon | Bcrypt
-![image](https://user-images.githubusercontent.com/65718668/152531373-df584ced-2c96-4ac2-b668-39dc34465fcd.png)
-
-
+![image](https://user-images.githubusercontent.com/65718668/152531529-adfc7253-4ab1-4e52-b95b-9dc5096c1411.png)
 ## Body-parser
 
 $ Node entenda as requesições recebendo informações json, entender a url os paramentros.
