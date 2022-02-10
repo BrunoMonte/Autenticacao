@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../Models/user')
 const authConfig = require('../config/auth.json')
-const services = require('../services/autenticacao')
+
 const router = express.Router()
 
 function gerandoToken(params = {}){
