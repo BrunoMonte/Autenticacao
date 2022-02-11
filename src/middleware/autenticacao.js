@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     const partes = authHeaders.split(' ')
 
     if(!partes.lenght === 2)
-    return res.status(401.send({ error: 'Erro no token' }))
+    return res.status(401).send({ error: 'Erro no token' }))
 
     const [ scheme , token ] = partes
 
